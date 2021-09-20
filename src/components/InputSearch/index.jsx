@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 
-export default function InputSearch({ setResult }) {
+export default function InputSearch({ setResult, setSearched }) {
   const [notFound, setNotFound] = useState(false);
   const validate = yup.object().shape({
     repoPath: yup.string().required("Empty field"),
@@ -33,6 +33,7 @@ export default function InputSearch({ setResult }) {
         } else {
           setNotFound(false);
           setResult(response);
+          setSearched(true);
         }
       });
   };
