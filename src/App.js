@@ -4,19 +4,32 @@ import InputSearch from './components/InputSearch';
 import Repositories from "./components/Repositories";
 
 function App() {
-  const [result, setResult] = useState();
-  const [searched, setSearched] = useState();
+  const [resultList, setResultList] = useState([]);
+  const [notFound,setNotFound] = useState(false)
+  const [searched, setSearched] = useState(false);
 
+  const searchRepos = (user, repo) => {
+    fetch(`https://api.github.com/repos/${user}/${repo}`)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.message) {
+          setNotFound(true);
+        } else {
+          setNotFound(false);
+          setResultList([...resultList,response]);
+          setSearched(true);
+        }
+      });
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <InputSearch setResult={setResult} setSearched={setSearched}/>
+        <InputSearch notFound={notFound} searchRepos={searchRepos}/>
       </header>
       <main className="App-main">
         {searched &&
-          <Repositories result={result}/>
+          <Repositories resultList={resultList}/>
         }
-        
       </main>
     </div>
   );

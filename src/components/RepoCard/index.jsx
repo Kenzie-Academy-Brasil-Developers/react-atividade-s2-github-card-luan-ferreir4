@@ -1,7 +1,7 @@
 import './style.css'
 import { AiFillGithub } from "react-icons/ai";
 
-export default function RepoCard ({result: { owner, name, description, html_url} }) {
+export default function RepoCard ({repository: { owner, name, description, html_url} }) {
     
     return(
         <div className='card'>

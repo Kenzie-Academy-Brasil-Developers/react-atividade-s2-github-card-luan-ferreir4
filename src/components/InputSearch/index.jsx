@@ -2,10 +2,9 @@ import "./style.css";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 
-export default function InputSearch({ setResult, setSearched }) {
-  const [notFound, setNotFound] = useState(false);
+export default function InputSearch({ notFound, searchRepos }) {
+
   const validate = yup.object().shape({
     repoPath: yup.string().required("Empty field"),
   });
@@ -24,20 +23,7 @@ export default function InputSearch({ setResult, setSearched }) {
     const dividedSearch = searchText.split("/");
     searchRepos(dividedSearch[0], dividedSearch[1]);
   };
-  
-  const searchRepos = (user, repo) => {
-    fetch(`https://api.github.com/repos/${user}/${repo}`)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.message) {
-          setNotFound(true);
-        } else {
-          setNotFound(false);
-          setResult(response);
-          setSearched(true);
-        }
-      });
-  };
+   
   return (
     <div className="searchContainer">
       <h2>Search for repositories</h2>
