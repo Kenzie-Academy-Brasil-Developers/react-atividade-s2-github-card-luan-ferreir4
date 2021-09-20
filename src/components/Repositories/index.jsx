@@ -1,10 +1,11 @@
 import './style.css'
 import RepoCard from '../RepoCard'
-export default function Repositories ({ result: { owner, name, description, url } }) {
-    
+
+export default function Repositories ({ result }) {
+    console.log(result)
     return(
         <div className='reposContainer'>
-            <RepoCard ownerData={owner}repoName={name} repoDscpt={description}/>
+            <RepoCard result={result}/>
         </div> 
     );
 }

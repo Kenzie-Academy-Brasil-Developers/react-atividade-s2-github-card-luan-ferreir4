@@ -1,3 +1,50 @@
-.card > img {
-    width: 100px;
+.card {
+    width: 90vw;
+    max-width: 700px;
+    padding: 10px 2vw;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #282c34;
+    border: 1px dashed whitesmoke;
+    border-radius: 10px;
+}
+.card-repo {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed whitesmoke;
+}
+.card-repo > img {
+    width: 90px;
+    border-radius: 100px;
 } 
+.card-info {
+    margin-left: 15px;
+    
+}
+.card-info > h4 {
+    margin: 0;
+    text-align: left;
+} 
+.card-info > p {
+    margin: 10 0 5px;
+    font-size: 0.7rem;
+    text-align: left;
+}
+
+.card-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.card-link > p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+.card-link > a {
+    color: whitesmoke;
+    margin: 0 10px;
+    font-size: 1.8rem;
+    padding-top: 6px;
+}

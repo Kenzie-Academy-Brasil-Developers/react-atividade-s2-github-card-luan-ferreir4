@@ -24,6 +24,7 @@ export default function InputSearch({ setResult, setSearched }) {
     const dividedSearch = searchText.split("/");
     searchRepos(dividedSearch[0], dividedSearch[1]);
   };
+  
   const searchRepos = (user, repo) => {
     fetch(`https://api.github.com/repos/${user}/${repo}`)
       .then((response) => response.json())
@@ -39,10 +40,15 @@ export default function InputSearch({ setResult, setSearched }) {
   };
   return (
     <div className="searchContainer">
+      <h2>Search for repositories</h2>
       <form className="formSearch" onSubmit={handleSubmit(getRepos)}>
+        
         <input type="text" {...register("repoPath")} />
-        {errors.repoPath?.message && <small>{errors.repoPath.message}</small>}
-        {notFound && <small>Not found</small>}
+        <div className="alertContainer">
+        {errors.repoPath?.message && <small className='alert'>{errors.repoPath.message}</small>}
+        {notFound && <small className='alert'>Not found</small>}
+        </div>
+        
         <button type="submit">Search</button>
       </form>
     </div>
